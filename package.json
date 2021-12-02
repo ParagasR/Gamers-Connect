@@ -1,0 +1,32 @@
+{
+  "name": "gamers-connect",
+  "version": "1.0.0",
+  "description": "Website that allows gamers to create posts on their favorite gamesa and comment on those posts",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParagasR/Gamers-Connect.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ParagasR/Gamers-Connect/issues"
+  },
+  "homepage": "https://github.com/ParagasR/Gamers-Connect#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cloudinary": "^1.27.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.1",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.11.0"
+  }
+}
