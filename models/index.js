@@ -28,7 +28,11 @@ Post.hasMany(Comment, {
 })
 
 Post.belongsTo(Game, {
-    foreignKey: 'post_id'
+    foreignKey: 'game_id'
 })
 
-module.exports = { User, Post, Comment };
+Game.hasMany(Post, {
+    foreignKey: 'game_id'
+})
+
+module.exports = { User, Post, Comment, Game };

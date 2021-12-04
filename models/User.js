@@ -27,6 +27,10 @@ User.init(
                 len: [8],
             },
         },
+        user_bio: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
         image_url: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -43,7 +47,6 @@ User.init(
             },
         },
         sequelize,
-        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'user',

@@ -30,20 +30,13 @@ Game.init(
               isURL: true
             }
         },
-        post_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
-        },
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        mmodelName: 'post',
+        modelName: 'game',
     }
 );
 
