@@ -33,7 +33,7 @@ User.init(
         },
         image_url: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
               isURL: true
             }
@@ -47,6 +47,7 @@ User.init(
             },
         },
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'user',

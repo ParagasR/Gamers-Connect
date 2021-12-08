@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 //TODO
 //add middleware Auth
@@ -83,3 +83,5 @@ router.put('/edit/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 })
+
+module.exports = router;
