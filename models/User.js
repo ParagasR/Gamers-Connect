@@ -31,13 +31,13 @@ User.init(
             type: DataTypes.TEXT,
             allowNull: true,
         },
-        image_url: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-              isURL: true
-            }
-          },
+        // image_url: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //       isURL: true
+        //     }
+        //   },
     },
     {
         hooks: {
