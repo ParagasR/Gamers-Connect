@@ -5,9 +5,9 @@ const seedComment = require('./commentData');
 const seedGames = require('./gameData')
 
 const seedAll = async () => {
-  // await sequelize.sync({ force: true }).catch((err) => { console.log(err) });
+  await sequelize.sync({ force: true }).catch((err) => { console.log(err) });
 
-  // await seedUser().catch((err) => { console.log(err) });
+  await seedUser().catch((err) => { console.log(err) });
 
   await seedGames().catch((err) => { console.log(err) });
 

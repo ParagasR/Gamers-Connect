@@ -75,7 +75,7 @@ router.get('/posts/:id', async (req, res) => {
 })
 
 //get all posts by a user
-router.get('/tempHandlebarFile', withAuth, async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     const dbUserData = await User.findByPk(req.session.loggedUser, {
       include: {
@@ -85,7 +85,7 @@ router.get('/tempHandlebarFile', withAuth, async (req, res) => {
     });
     user = dbUserData.get({ plain: true })
     console.log(user)
-    res.render('tempHandlebarFile', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+    res.render('dashboard', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   } catch (err) {
     console.log(err)
     const userWithoutPosts = await User.findByPk(req.session.loggedUser, {
@@ -96,7 +96,7 @@ router.get('/tempHandlebarFile', withAuth, async (req, res) => {
     }
     user = userWithoutPosts.get({ plain: true })
     console.log(user)
-    res.render('tempHandlebarFile', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+    res.render('dashboard', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   }
 })
 

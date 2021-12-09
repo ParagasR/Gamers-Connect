@@ -1,0 +1,41 @@
+<section>
+    <div>
+        <div>
+            {{user.user}}
+        </div>
+        <div>
+            {{!-- pfp --}}
+            {{#if user.bio}}
+            {{user.bio}}
+            {{#else}}
+            <form id='bio'>
+                <div class='field'>
+                    <textarea class="textarea" placeholder="Enter some information about you!"
+                        id='bioTextField'></textarea>
+                </div>
+                <div class='field'>
+                    <button class='button' type='submit'>Submit</button>
+                </div>
+            </form>
+            {{/if}}
+        </div>
+    </div>
+    {{#if user.posts}}
+    <ul>
+        <h1>posts</h1>
+        {{#each user.posts as |post|}}
+        <li>
+            <div>
+                <a href='/post/{{id}}'>
+                    {{> post-details}}
+                </a>
+                <button class='button' id='delete-button' data-delete={{id}}>delete</button>
+                <button class='button' id='edit-button' data-edit={{id}}>edit</button>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</section>
+
+<script type='text/javascript' src='js/dashboard.js'></script>
