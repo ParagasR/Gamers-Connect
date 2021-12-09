@@ -7,19 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/uploads" method="put" enctype="multipart/form-data" class="ui large form" id="usrform">
+    <form  class="image" id="usrform">
+    <!-- <form class="image" id="usrform"></form> -->
         <div class="ui stacked segment">
-         
 
-          <h4 class="ui teal image header"><label for="image_url">Upload a photo (required)</label></h4><br>
-          <input type="file" id="picture-url" name="image_url" required><br>
+            <label for="user_bio">About You:</label>
+            <textarea name="user_bio" id="bio-content" id="user-bio" cols="20" rows="10"></textarea>
 
-          
-        
+            <label for="favorite_games">Favorite Games:</label>
+            <textarea name="favorite_games" id="game-content" cols="20" rows="10"></textarea>
 
-        <input type="submit" value="Submit" class="image">
+            <h4 class="image header"><label for="image_url">Upload a photo (required)</label></h4><br>
+            <input type="file" id="picture-url" name="image_url"><br>
+
+            <input type="submit" value="Submit" class="image" id="btn"> 
         </div>
       </form>
-<script src="/public/js/profile.js"></script>
+      <!-- <img src="https://res.cloudinary.com/dfdi3vuvy/image/upload/v1639015713/v5uzw4myex7xyqvyp9ja.jpg" alt=""> -->
+      <!-- <script src="./public/js/test.js"></script> -->
+      <script src="./public/js/photo.js"></script>
+<!-- <script src="/public/js/profile.js"></script> -->
 </body>
 </html>
