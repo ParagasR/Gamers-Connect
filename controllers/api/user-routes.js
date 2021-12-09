@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const dbUserData = await User.create({
-      user: req.body.user,
+      username: req.body.username,
       password: req.body.password,
       //add more? pfp image
     });
@@ -68,5 +68,7 @@ router.post('/', async (req, res) => {
     console.log(err)
     res.status(500).json(err)
   }
-})
+});
+
+
 module.exports = router;

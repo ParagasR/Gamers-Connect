@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Comment, Game } = require('../models');
-const withAuth = require('../utils/auth')
+
+const withAuth = require('../utils/auth');
 
 //TODO:
 //replace all tempHandlebarFile with proper handlebar files
