@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +26,7 @@
         <a class="mx-3" href="">Wishlist</a>
         <a class="mx-3" href="">Future Releases</a>
       </div>
+
     </div>
   </div>
   <!--Login/Logout/Sign up-->
@@ -52,6 +52,57 @@
     </div>
   </div>
 
+    <!--Search Bar------->
+    <form class="box">
+        <div class="field is-flex is-three-fifths">
+          <label class="label row mx-5">Search</label>
+          <div class="control">
+            <input class="input" type="email" placeholder="What do you want to play?">
+          </div>
+          <div>
+            <a class="button mx-5">Let's Go</a>
+          </div>
+        </div>
+  <!--User Posts-->
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <div class="card">
+          <div class="card-content"> 
+            {{#each user.username}}
+            {{/each}}
+            <br>
+            <br>
+            {{ user.userPost }}
+           </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="card">
+              <div class="card-content"> 
+                {{#each user.username}}
+                {{/each}}
+                <br>
+                <br>
+                {{user.userPost}}
+               </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="columns">
+              <div class="column">
+                <div class="card">
+                  <div class="card-content"> 
+                    {{#each user.username}}
+                    {{/each}}
+                    <br>
+                    <br>
+                    {{user.userPost}}
+                   </div>
+                </div>
+              </div>
 
 
 
