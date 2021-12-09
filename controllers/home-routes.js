@@ -6,7 +6,20 @@ const withAuth = require('../utils/auth')
 //replace all tempHandlebarFile with proper handlebar files
 
 router.get('/', (req, res) => {
+  try {
+    const allPosts = await Post.findAll({
+      include: {
+        model: User, Game,
+        attributes: ['username']
+      },
+    });
 
+    const posts = allPosts.map((post) => post.get({ plain: true }))
+    res.status(200).json(posts)
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 })
 
 //get all posts from the game

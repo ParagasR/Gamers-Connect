@@ -17,3 +17,7 @@ const gameData = [
         title: 'Valorant',
     },
 ]
+
+const seedGames = () => Game.bulkCreate(gameData);
+
+module.exports = seedGames;
