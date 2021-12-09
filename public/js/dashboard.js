@@ -5,7 +5,7 @@ const bioFormHandler = async (event) => {
 
     if (bioValue) {
         const reponse = await fetch('api/profile/bio', {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify({ bioValue }),
             header: { 'Content-Type': "applicaion/json" },
         })

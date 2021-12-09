@@ -1,0 +1,63 @@
+{{!-- main container --}}
+<div class='columns' id='login-page'>
+    {{!-- login card --}}
+    <div class='column card mx-6'>
+        <form class='login'>
+            <h2>Login</h2>
+            <div class='field'>
+                {{!-- email form --}}
+                <div>
+                    <label for='login-email'>Email:</label>
+                    <input class='input' type='email' id='login-email' />
+                </div>
+                {{!-- password form --}}
+                <div>
+                    <label for='login-password'>Password:</label>
+                    <input class='input' type='password' id='login-password' />
+                </div>
+                {{!-- login button --}}
+                <div>
+                    <button class='button' type="submit">Login</button>
+                </div>
+            </div>
+    </div>
+    </form>
+
+    {{!-- create user card --}}
+    <div class='column card mx-6'>
+        <form class='signup'>
+            <h2>Signup</h2>
+            <div class='field'>
+                {{!-- Username form --}}
+                <div>
+                    <label for='signup-username'>Username:</label>
+                    <div class='control'>
+                        <input class='input' type='text' id='signup-username' />
+                    </div>
+                </div>
+                {{!-- email form --}}
+                <div>
+                    <label for='signup-email'>Email:</label>
+                    <div class='control'>
+                        <input class='input' type='email' id='signup-email' />
+                    </div>
+
+                </div>
+                {{!-- password form --}}
+                <div>
+                    <label for='signup-password'>Password:</label>
+                    <div class='control'>
+                        <input class='input' type='password' id='signup-password' />
+                    </div>
+                </div>
+                {{!-- submit button --}}
+                <div>
+                    <div class='control'>
+                        <button class='button' type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script src='/js/login.js'></script>
