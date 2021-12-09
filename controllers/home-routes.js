@@ -1,9 +1,26 @@
 const router = require('express').Router();
 const { User, Post, Comment, Game } = require('../models');
-// const withAuth = require('../utils/auth')
+const withAuth = require('../utils/auth')
 
 //TODO:
 //replace all tempHandlebarFile with proper handlebar files
+
+router.get('/', (req, res) => {
+  try {
+    const allPosts = await Post.findAll({
+      include: {
+        model: User, Game,
+        attributes: ['username']
+      },
+    });
+
+    const posts = allPosts.map((post) => post.get({ plain: true }))
+    res.status(200).json(posts)
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
 
 //get all posts from the game
 router.get('/game/:id', async (req, res) => {
@@ -81,6 +98,7 @@ router.get('/tempHandlebarFile', withAuth, async (req, res) => {
     res.render('tempHandlebarFile', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   }
 })
+
 
 
 module.exports = router;
