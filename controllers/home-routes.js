@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 //TODO:
 //replace all tempHandlebarFile with proper handlebar files
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const allPosts = await Post.findAll({
       include: {
