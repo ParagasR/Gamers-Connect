@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     });
 
     const posts = allPosts.map((post) => post.get({ plain: true }))
-    res.status(200).json(posts)
+    res.render('post', { posts })
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -100,6 +100,13 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 })
 
-
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/')
+    return
+  } else {
+    res.render('login');
+  }
+})
 
 module.exports = router;

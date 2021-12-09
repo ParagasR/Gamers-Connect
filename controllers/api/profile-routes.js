@@ -1,7 +1,7 @@
-// const router = require('express').Router();
+const router = require('express').Router();
 
-// const { User, Post, Profile } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const { User, Post, Profile } = require('../../models');
+const withAuth = require('../../utils/auth');
 // const cloudinary = require('cloudinary').v2;
 // cloudinary.config({ 
 //     cloud_name: 'dfdi3vuvy', 
@@ -105,4 +105,24 @@
 // });
 
 // // Delete Profile?
-// module.exports = router;
+
+// update bio
+router.put('/profile/bio', withAuth, async (req, res) => {
+    try {
+        const editBio = await Profile.update(
+            {
+                user_bio: req.body.bioValue,
+            },
+            {
+                where: {
+                    id: req.session.loggedUser,
+                }
+            }
+        );
+        res.status(200).json(editBio)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+module.exports = router;

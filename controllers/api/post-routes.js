@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 //TODO
 //add middleware Auth
 
-new Post
+// new Post
 router.post('/:id', async (req, res) => {
   try {
     const newPost = await Post.create({

@@ -5,8 +5,8 @@
 const loginButton = async (event) => {
   event.preventDefault();
   //grab the values in the two fields
-  const username = document.querySelector('#tempHTMLID').value.trim();
-  const password = document.querySelector('#tempHTMLID').value.trim();
+  const username = document.querySelector('#login-username').value.trim();
+  const password = document.querySelector('#login-password').value.trim();
   //check to see if the exist
   console.log(email + ' ' + password)
   if (email && password) {
@@ -29,8 +29,8 @@ const loginButton = async (event) => {
 const signupButton = async (event) => {
   event.preventDefault();
   //grab all the data in the respective fields
-  const username = document.querySelector('#tempHTMLID').value.trim();
-  const password = document.querySelector('#tempHTMLID').value.trim();
+  const username = document.querySelector('#signup-username').value.trim();
+  const password = document.querySelector('#signup-password').value.trim();
   //check to see if the data exists
   if (user && password) {
     //send request to api to submit data to create user
@@ -53,9 +53,25 @@ const signupButton = async (event) => {
 //attach eventhandlers to buttons
 
 document
-  .querySelector('.tempHTMLID')
+  .querySelector('.login')
   .addEventListener('submit', loginButton);
 
 document
-  .querySelector('.tempHTMLID')
+  .querySelector('.signup')
   .addEventListener('submit', signupButton);
+
+document
+  .querySelector('#create')
+  .addEventListener('click', (event) => {
+    document
+      .querySelector('#create-new-user')
+      .classList.add('is-active')
+  })
+
+document
+  .querySelector('#create-background')
+  .addEventListener('click', (event) => {
+    document
+      .querySelector('#create-new-user')
+      .classList.remove('is-active')
+  })
