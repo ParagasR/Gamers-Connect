@@ -1,14 +1,14 @@
 {{!-- main container --}}
-<div class='columns' id='login-page'>
+<div class='columns is-flex is-justify-content-center is-align-items-center' id='login-page'>
     {{!-- login card --}}
-    <div class='column card mx-6'>
+    <div class='column card mx-6 is-one-quarter'>
         <form class='login'>
             <h2>Login</h2>
             <div class='field'>
                 {{!-- email form --}}
                 <div>
-                    <label for='login-email'>Email:</label>
-                    <input class='input' type='email' id='login-email' />
+                    <label for='login-username'>Username:</label>
+                    <input class='input' id='login-username' />
                 </div>
                 {{!-- password form --}}
                 <div>
@@ -16,47 +16,51 @@
                     <input class='input' type='password' id='login-password' />
                 </div>
                 {{!-- login button --}}
-                <div>
+                <div class='is-flex is-justify-content-center mt-3'>
                     <button class='button' type="submit">Login</button>
                 </div>
             </div>
+        </form>
+        <div class='is-flex is-justify-content-center mt-3'>
+            <a id='create'>
+                create new user
+            </a>
+        </div>
     </div>
-    </form>
+</div>
 
-    {{!-- create user card --}}
-    <div class='column card mx-6'>
-        <form class='signup'>
-            <h2>Signup</h2>
-            <div class='field'>
-                {{!-- Username form --}}
-                <div>
-                    <label for='signup-username'>Username:</label>
-                    <div class='control'>
-                        <input class='input' type='text' id='signup-username' />
-                    </div>
-                </div>
-                {{!-- email form --}}
-                <div>
-                    <label for='signup-email'>Email:</label>
-                    <div class='control'>
-                        <input class='input' type='email' id='signup-email' />
-                    </div>
 
-                </div>
-                {{!-- password form --}}
-                <div>
-                    <label for='signup-password'>Password:</label>
-                    <div class='control'>
-                        <input class='input' type='password' id='signup-password' />
+{{!-- pop-up modal to create a user --}}
+<div class="modal" id="create-new-user">
+    <div class="modal-background" id='create-background'></div>
+    <div class="modal-content">
+        <div class='column card mx-6'>
+            <form class='signup'>
+                <h2>Signup</h2>
+                <div class='field'>
+                    {{!-- Username form --}}
+                    <div>
+                        <label for='signup-username'>Username:</label>
+                        <div class='control'>
+                            <input class='input' type='text' id='signup-username' />
+                        </div>
+                    </div>
+                    {{!-- password form --}}
+                    <div>
+                        <label for='signup-password'>Password:</label>
+                        <div class='control'>
+                            <input class='input' type='password' id='signup-password' />
+                        </div>
+                    </div>
+                    {{!-- submit button --}}
+                    <div>
+                        <div class='control is-flex is-justify-content-center mt-3'>
+                            <button class='button' type="submit">Submit</button>
+                        </div>
                     </div>
                 </div>
-                {{!-- submit button --}}
-                <div>
-                    <div class='control'>
-                        <button class='button' type="submit">Submit</button>
-                    </div>
-                </div>
-            </div>
+            </form>
+        </div>
     </div>
 </div>
 
