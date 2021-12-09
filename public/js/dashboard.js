@@ -1,21 +1,14 @@
-const { response } = require("express");
+document
+    .querySelector('#edit-button')
+    .addEventListener('click', (event) => {
+        document.querySelector('#edit-profile')
+            .classList.add('is-active')
+    })
 
-const bioFormHandler = async (event) => {
-    const bioValue = document.querySelector('#bioTextField').value;
+document
+    .querySelector('#profile-background')
+    .addEventListener('click', (event) => {
+        document.querySelector('#edit-profile')
+            .classList.remove('is-active')
+    })
 
-    if (bioValue) {
-        const reponse = await fetch('api/profile/bio', {
-            method: 'PUT',
-            body: JSON.stringify({ bioValue }),
-            header: { 'Content-Type': "applicaion/json" },
-        })
-
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert("Failed to change bio")
-        }
-    } else {
-        alert('Text field must not be empty')
-    }
-}
