@@ -7,15 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   </head>
 
-  <!--hero--add in is-primary l8r------->
-  <!-- <section class="hero">
-        <div class="hero-body">
-            <div class="container">
-                <h1>lorem ipsum</h1>
-            </div>
-        </div>
-    </section> -->
-
+<body>
     <!--columns/navigation bar------>
     <div class="columns">
         <div class="column">
@@ -50,6 +42,48 @@
             <a class="button mx-5">Let's Go</a>
           </div>
         </div>
+  <!--User Posts-->
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <div class="card">
+          <div class="card-content"> 
+            {{#each user.username}}
+            {{/each}}
+            <br>
+            <br>
+            {{ user.userPost }}
+           </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="card">
+              <div class="card-content"> 
+                {{#each user.username}}
+                {{/each}}
+                <br>
+                <br>
+                {{user.userPost}}
+               </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="columns">
+              <div class="column">
+                <div class="card">
+                  <div class="card-content"> 
+                    {{#each user.username}}
+                    {{/each}}
+                    <br>
+                    <br>
+                    {{user.userPost}}
+                   </div>
+                </div>
+              </div>
+            
+
 
    
     
