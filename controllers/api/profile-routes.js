@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const { User, Post, Profile } = require('../../models');
 const withAuth = require('../../utils/auth');
 const cloudinary = require('cloudinary').v2;
@@ -7,6 +8,7 @@ cloudinary.config({
     api_key: '864399935628754', 
     api_secret: 'IIjTkIv75REFCPTnO5gCopjjPfU' 
   });
+
 
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
@@ -103,5 +105,4 @@ router.post('/', upload.single('image_url'), function (req, res, next) {
 });
 
 // Delete Profile?
-
 module.exports = router;
