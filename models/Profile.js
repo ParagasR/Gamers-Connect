@@ -17,11 +17,12 @@ Profile.init(
             allowNull: true,
         },
         favorite_games: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            allowNull: true,
         },
         image_url: {
             type: DataTypes.STRING,
-            allowNull: true,
+            defaultValue: 'http://res.cloudinary.com/dfdi3vuvy/image/upload/v1639019604/bgyzbvrxgvv5l9vzytaw.png',
             validate: {
               isURL: true
             }
