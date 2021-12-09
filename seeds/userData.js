@@ -2,24 +2,20 @@ const { User } = require('../models');
 
 const userData = [
   {
-    user: 'NinjaStep',
+    username: 'NinjaStep',
     password: '12345678',
-    //image_url: 'default url link in cloud'
   },
   {
-    user: 'Chochinibi',
+    username: 'Chochinibi',
     password: '12345678',
-    //image_url: 'default url link in cloud'
   },
   {
-    user: 'DeterminedSloth',
+    username: 'DeterminedSloth',
     password: '12345678',
-    //image_url: 'default url link in cloud'
   },
   {
-    user: 'Zima',
+    username: 'Zima',
     password: '12345678',
-    //image_url: 'default url link in cloud'
   },
 ];
 

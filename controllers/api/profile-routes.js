@@ -1,7 +1,10 @@
 const router = require('express').Router();
+
 const { User, Post, Profile } = require('../../models');
 const withAuth = require('../../utils/auth');
+
 const cloudinary = require('cloudinary').v2;
+
 // cloudinary.config({ 
 //     cloud_name: 'dfdi3vuvy', 
 //     api_key: '864399935628754', 
@@ -13,60 +16,61 @@ const upload = multer({ dest: 'uploads/' });
 var type = upload.single('image_url');
 require('dotenv').config();
 
-// Do I need to get all profiles?
-router.get('/', async (req, res) => {
-    try {
-        const profileData = await Profile.findAll({
-            include: [
-                {
-                  model: User,
-                  attributes: ['name'],
-                },
-              ],
-        });
+// // Do I need to get all profiles?
+// router.get('/', async (req, res) => {
+//     try {
+//         const profileData = await Profile.findAll({
+//             include: [
+//                 {
+//                   model: User,
+//                   attributes: ['name'],
+//                 },
+//               ],
+//         });
 
-        const profiles = profileData.map((profile) => profile.get({ plain: true }));
+//         const profiles = profileData.map((profile) => profile.get({ plain: true }));
 
-        res.render('/test.html', { 
-            profiles, 
-            loggedIn: req.session.loggedIn
-          });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+//         res.render('/test.html', { 
+//             profiles, 
+//             loggedIn: req.session.loggedIn
+//           });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
-//  Get profile by id
-router.get('/:id', withAuth, async (req, res) => {
-    try{
-        const userProfile = await Profile.findByPk(req.params.id, {
-            attributes: [
-                'id',
-                'user_bio',
-                'favorite_games',
-                'image_url',
-            ],
-            include: [
-                {
-                    model: Post
-                },
-                {
-                    model: User,
-                    attributes: ['username']
-                }
-            ]
-        });
-        const profile = userProfile.get({ plain: true });
-        res.render('profile', {
-            profile,
-            loggedIn: req.session.loggedIn,
-        })
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+// //  Get profile by id
+// router.get('/:id', withAuth, async (req, res) => {
+//     try{
+//         const userProfile = await Profile.findByPk(req.params.id, {
+//             attributes: [
+//                 'id',
+//                 'user_bio',
+//                 'favorite_games',
+//                 'image_url',
+//             ],
+//             include: [
+//                 {
+//                     model: Post
+//                 },
+//                 {
+//                     model: User,
+//                     attributes: ['username']
+//                 }
+//             ]
+//         });
+//         const profile = userProfile.get({ plain: true });
+//         res.render('profile', {
+//             profile,
+//             loggedIn: req.session.loggedIn,
+//         })
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
-// Update profile, maybe one just for picture
+// // Update profile, maybe one just for picture
+
 
 // Create profile
 router.post('/', type, function (req, res, next) {
@@ -161,4 +165,24 @@ router.post('/', upload.single('image_url'), async (req, res, next) => {
 });
 // Delete Profile?
 
+
+// update bio
+router.put('/profile/bio', withAuth, async (req, res) => {
+    try {
+        const editBio = await Profile.update(
+            {
+                user_bio: req.body.bioValue,
+            },
+            {
+                where: {
+                    id: req.session.loggedUser,
+                }
+            }
+        );
+        res.status(200).json(editBio)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
 module.exports = router;

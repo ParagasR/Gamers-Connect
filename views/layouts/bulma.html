@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  </head>
 
-  <!--hero--add in is-primary l8r------->
-  <!-- <section class="hero">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<!--hero--add in is-primary l8r------->
+<!-- <section class="hero">
         <div class="hero-body">
             <div class="container">
                 <h1>lorem ipsum</h1>
@@ -16,43 +17,159 @@
         </div>
     </section> -->
 
-    <!--columns/navigation bar------>
-    <div class="columns">
-        <div class="column">
-            <div class="card">
-                <div class="card-content">
-                    <a class="mx-3" href="">Home</a>
-                    <a class="mx-3" href="">User Dashboard</a>
-                    <a class="mx-3" href="">Wishlist</a>
-                    <a class="mx-3"href="">Future Releases</a>
-                </div>
-            </div>
-        </div>
-        <!--Login/Logout/Sign up-->
+<!--columns/navigation bar------>
+<div class="columns">
+  <div class="column">
+    <div class="card">
+      <div class="card-content">
+        <a class="mx-3" href="/">Home</a>
+        <a class="mx-3" href="/profile">User Dashboard</a>
+        <a class="mx-3" href="">Wishlist</a>
+        <a class="mx-3" href="">Future Releases</a>
+      </div>
+
+    </div>
+  </div>
+  <!--Login/Logout/Sign up-->
+  <div>
+    <!-- if statement -->
+    <a class="button mt-5 mx-3">Login</a>
+    <a class="button mt-5 mx-3">Sign Up</a>
+    <!-- else -->
+    <a class="button mt-5 mx-3">log out</a>
+  </div>
+  <!--Logo-->
+  <figure class="image is-128x128	is-justify-content-right">
+    <img src="./images/GC-logo.png">
+  </figure>
+</div>
+
+<!--Search Bar------->
+<form class="box">
+  <div class="field is-flex is-three-fifths">
+    <label class="label row mx-5">Search</label>
+    <div class="control">
+      <input class="input" type="email" placeholder="What do you want to play?">
+    </div>
     <div>
-      <a class="button mt-5 mx-3">Login</a>
-      <a class="button mt-5 mx-3">Sign Up</a>
+      <a class="button mx-5">Let's Go</a>
     </div>
-          <!--Logo-->
+    <!--Logo-->
     <figure class="image is-128x128	is-justify-content-right">
-        <img src="./images/GC-logo.png">
-      </figure>
-    </div>
+      <img src="./images/GC-logo.png">
+    </figure>
+  </div>
 
-    <!--Search Bar------->
-    <form class="box">
-        <div class="field is-flex is-three-fifths">
-          <label class="label row mx-5">Search</label>
-          <div class="control">
-            <input class="input" type="email" placeholder="What do you want to play?">
-          </div>
-          <div>
-            <a class="button mx-5">Let's Go</a>
+  <!--Search Bar------->
+  <form class="box">
+    <div class="field is-flex is-three-fifths">
+      <label class="label row mx-5">Search</label>
+      <div class="control">
+        <input class="input" type="email" placeholder="What do you want to play?">
+      </div>
+      <div>
+        <a class="button mx-5">Let's Go</a>
+      </div>
+    </div>
+    <!--User Posts-->
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="card">
+            <div class="card-content">
+              {{#each user.username}}
+              {{/each}}
+              <br>
+              <br>
+              {{ user.userPost }}
+            </div>
           </div>
         </div>
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  {{#each user.username}}
+                  {{/each}}
+                  <br>
+                  <br>
+                  {{user.userPost}}
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="columns">
+                <div class="column">
+                  <div class="card">
+                    <div class="card-content">
+                      {{#each user.username}}
+                      {{/each}}
+                      <br>
+                      <br>
+                      {{user.userPost}}
+                    </div>
+                  </div>
+                </div>
 
-   
-    
 
 
-</body>
+
+
+
+                <!--Search Bar------->
+                <form class="box">
+                  <div class="field is-flex is-three-fifths">
+                    <label class="label row mx-5">Search</label>
+                    <div class="control">
+                      <input class="input" type="email" placeholder="What do you want to play?">
+                    </div>
+                    <div>
+                      <a class="button mx-5">Let's Go</a>
+                    </div>
+                  </div>
+                  <!--User Posts-->
+                  <div class="container">
+                    <div class="columns">
+                      <div class="column">
+                        <div class="card">
+                          <div class="card-content">
+                            {{#each user.username}}
+                            {{/each}}
+                            <br>
+                            <br>
+                            {{ user.userPost }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="container">
+                        <div class="columns">
+                          <div class="column">
+                            <div class="card">
+                              <div class="card-content">
+                                {{#each user.username}}
+                                {{/each}}
+                                <br>
+                                <br>
+                                {{user.userPost}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="container">
+                            <div class="columns">
+                              <div class="column">
+                                <div class="card">
+                                  <div class="card-content">
+                                    {{#each user.username}}
+                                    {{/each}}
+                                    <br>
+                                    <br>
+                                    {{user.userPost}}
+                                  </div>
+                                </div>
+                              </div>
+
+
+
+
+                              </body>

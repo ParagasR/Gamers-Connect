@@ -1,9 +1,27 @@
 const router = require('express').Router();
 const { User, Post, Comment, Game } = require('../models');
+
 const withAuth = require('../utils/auth');
 
 //TODO:
 //replace all tempHandlebarFile with proper handlebar files
+
+router.get('/', async (req, res) => {
+  try {
+    const allPosts = await Post.findAll({
+      include: {
+        model: User, Game,
+        attributes: ['username']
+      },
+    });
+
+    const posts = allPosts.map((post) => post.get({ plain: true }))
+    res.render('post', { posts })
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
 
 //get all posts from the game
 router.get('/game/:id', async (req, res) => {
@@ -57,7 +75,7 @@ router.get('/posts/:id', async (req, res) => {
 })
 
 //get all posts by a user
-router.get('/tempHandlebarFile', withAuth, async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     const dbUserData = await User.findByPk(req.session.loggedUser, {
       include: {
@@ -67,7 +85,7 @@ router.get('/tempHandlebarFile', withAuth, async (req, res) => {
     });
     user = dbUserData.get({ plain: true })
     console.log(user)
-    res.render('tempHandlebarFile', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+    res.render('dashboard', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   } catch (err) {
     console.log(err)
     const userWithoutPosts = await User.findByPk(req.session.loggedUser, {
@@ -78,9 +96,17 @@ router.get('/tempHandlebarFile', withAuth, async (req, res) => {
     }
     user = userWithoutPosts.get({ plain: true })
     console.log(user)
-    res.render('tempHandlebarFile', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+    res.render('dashboard', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   }
 })
 
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/')
+    return
+  } else {
+    res.render('login');
+  }
+})
 
 module.exports = router;

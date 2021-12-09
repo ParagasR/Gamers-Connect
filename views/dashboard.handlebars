@@ -1,0 +1,57 @@
+<section>
+    <div>
+        <div>
+            {{user.user}}
+        </div>
+        <div>
+            {{!-- pfp --}}
+            {{#if user.bio}}
+            {{user.bio}}
+            {{/if}}
+            <button class='button'>Edit Profile</button>
+        </div>
+    </div>
+    {{#if user.posts}}
+    <ul>
+        <h1>posts</h1>
+        {{#each user.posts as |post|}}
+        <li>
+            <div>
+                <a href='/post/{{id}}'>
+                    {{> post-details}}
+                </a>
+                <button class='button' id='delete-button' data-delete={{id}}>delete</button>
+                <button class='button' id='edit-button' data-edit={{id}}>edit</button>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</section>
+
+
+{{!-- modal to edit profile --}}
+<div class='modal' id='edit-profile'>
+    <div class="modal-background" id='profile-background'></div>
+    <div class="modal-content">
+        <div class='columns card mx-6'>
+            <form class='profile'>
+                <h2>Edit Profile</h2>
+                <div class='field'>
+                    <div class='column'>
+                        {{!-- area for the picture upload --}}
+                    </div>
+
+                    <div class='column'>
+                        <label for='edit-bio'>Edit Bio:</label>
+                        <div class='control'>
+                            <textarea class='textarea' placeholder=''></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript' src='js/dashboard.js'></script>

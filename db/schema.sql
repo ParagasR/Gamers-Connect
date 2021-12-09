@@ -1,2 +1,3 @@
-DROP DATABASE IF EXISTS gamersconnect_db;
-CREATE DATABASE gamersconnect_db;
+DROP DATABASE IF EXISTS gamersConnect_db;
+
+CREATE DATABASE gamersConnect_db;

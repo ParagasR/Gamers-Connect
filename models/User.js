@@ -27,17 +27,6 @@ User.init(
                 len: [8],
             },
         },
-        user_bio: {
-            type: DataTypes.TEXT,
-            allowNull: true,
-        },
-        image_url: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-              isURL: true
-            }
-          },
     },
     {
         hooks: {
