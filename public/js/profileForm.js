@@ -1,40 +1,57 @@
 const formSubmit = async (event) => {
     event.preventDefault();
-    let photo = document.getElementById("image-url").files[0];
+    let photo = document.getElementById("picture-url").files[0];
     let formData = new FormData();
-    let userBio = JSON.stringify(document.querySelector("#user-bio").value);
+    let userBio = JSON.stringify(document.querySelector("#edit-bio").value);
     let favGames = JSON.stringify(document.querySelector("#game-content").value);
 
-    console.log(photo)
-    console.log(userBio, favGames)
     formData.append("image_url", photo);
-    formData.append("user_bio", userBio);
-    formData.append("favorite_games", favGames);
 
-    if(formData && userBio && favGames) {
+    if (photo) {
         console.log(formData);
-        const response = await fetch('http://localhost:3001/api/profile', {
-            mode:'no-cors', 
-            method: "POST", 
+        const response1 = await fetch('/api/profile/picture', {
+            method: "POST",
             body: formData,
-            headers: { 'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
         });
-        console.log(response, "this is response");
-        if (response.ok) {
-            console.log(response);
-    } else {
-        console.log("ok");
     };
-    // fetch('http://localhost:3001/api/profile', {mode:'no-cors', method: "POST", body: formData)
-    // .then((data) => {
-    //     console.log(data);
-    // }).catch((err) => {
-    //     console.log(err);
-    // })
-};
+
+    if (userBio && favGames) {
+        console.log(userBio + ' ' + favGames)
+        const response2 = await fetch('/api/profile/bio', {
+            method: "POST",
+            body: { userBio, favGames },
+            headers: { 'Content-Type': 'application/json' },
+        })
+    };
+
+    if (response1 && response2) {
+        console.log('every thing sent over successfully');
+    } else if (response1) {
+        console.log('Picture successfully sent over');
+    } else if (response2) {
+        console.log('successfully sent bio and favorite games');
+    } else {
+        console.log('we fucked up');
+    }
 }
 
 
 
-const button = document.getElementById('btn')
-button.addEventListener('click', formSubmit);
+document
+    .querySelector('#profile')
+    .addEventListener('submit', formSubmit)
+
+document
+    .querySelector('#edit-button')
+    .addEventListener('click', (event) => {
+        document.querySelector('#edit-profile')
+            .classList.add('is-active')
+    })
+
+document
+    .querySelector('#profile-background')
+    .addEventListener('click', (event) => {
+        document.querySelector('#edit-profile')
+            .classList.remove('is-active')
+    })

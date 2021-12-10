@@ -57,17 +57,17 @@ router.get('/posts/:id', async (req, res) => {
         attributes: ['comment', 'createdAt'],
         include: {
           model: User,
-          attributes: ['user']
+          attributes: ['username']
         }
       },
       {
         model: User,
-        attributes: ['user']
+        attributes: ['username']
       }]
     });
     const post = postDetails.get({ plain: true })
     req.session.currentPost = req.params.id;
-    res.render('tempHandlebarFile', { post, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+    res.render('postWithComments', { post, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -75,9 +75,10 @@ router.get('/posts/:id', async (req, res) => {
 })
 
 //get all posts by a user
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/profile', async (req, res) => {
   try {
-    const dbUserData = await User.findByPk(req.session.loggedUser, {
+    //change this back req.session.loggedUser
+    const dbUserData = await User.findByPk(1, {
       include: {
         model: Post,
       },
