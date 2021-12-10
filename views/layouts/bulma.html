@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hello Bulma!</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
 </head>
 
 <!--hero--add in is-primary l8r------->
@@ -18,10 +19,10 @@
     </section> -->
 
 <!--columns/navigation bar------>
-<div class="columns">
+<div id="header-container" class="columns">
   <div class="column">
-    <div class="card">
-      <div class="card-content">
+    <div id="navbar-container" class="card">
+      <div id="navbar" class="card-content">
         <a class="mx-3" href="/">Home</a>
         <a class="mx-3" href="/profile">User Dashboard</a>
         <a class="mx-3" href="">Wishlist</a>
@@ -33,143 +34,25 @@
   <!--Login/Logout/Sign up-->
   <div>
     <!-- if statement -->
-    <a class="button mt-5 mx-3">Login</a>
-    <a class="button mt-5 mx-3">Sign Up</a>
+    <a id="login-buttons" class="button mt-5 mx-1">Login</a>
+    <a id="login-buttons" class="button mt-5 mx-1">Sign Up</a>
     <!-- else -->
-    <a class="button mt-5 mx-3">log out</a>
+    <a id="login-buttons" class="button mt-5 mx-1">Logout</a>
   </div>
   <!--Logo-->
-  <figure class="image is-128x128	is-justify-content-right">
-    <img src="./images/GC-logo.png">
+  <figure id="logo" class="image is-128x128 is-justify-content-right">
+    <img src="/public/images/gc-logo.png" alt="logo goes here">
   </figure>
 </div>
 
 <!--Search Bar------->
-<form class="box">
+<form id="sb-container" class="box">
   <div class="field is-flex is-three-fifths">
-    <label class="label row mx-5">Search</label>
     <div class="control">
-      <input class="input" type="email" placeholder="What do you want to play?">
+      <input class="input" type="search" placeholder="What do you want to play?">
     </div>
     <div>
       <a class="button mx-5">Let's Go</a>
     </div>
-    <!--Logo-->
-    <figure class="image is-128x128	is-justify-content-right">
-      <img src="./images/GC-logo.png">
-    </figure>
-  </div>
-
-  <!--Search Bar------->
-  <form class="box">
-    <div class="field is-flex is-three-fifths">
-      <label class="label row mx-5">Search</label>
-      <div class="control">
-        <input class="input" type="email" placeholder="What do you want to play?">
-      </div>
-      <div>
-        <a class="button mx-5">Let's Go</a>
-      </div>
-    </div>
-    <!--User Posts-->
-    <div class="container">
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-content">
-              {{#each user.username}}
-              {{/each}}
-              <br>
-              <br>
-              {{ user.userPost }}
-            </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <div class="card">
-                <div class="card-content">
-                  {{#each user.username}}
-                  {{/each}}
-                  <br>
-                  <br>
-                  {{user.userPost}}
-                </div>
-              </div>
-            </div>
-            <div class="container">
-              <div class="columns">
-                <div class="column">
-                  <div class="card">
-                    <div class="card-content">
-                      {{#each user.username}}
-                      {{/each}}
-                      <br>
-                      <br>
-                      {{user.userPost}}
-                    </div>
-                  </div>
-                </div>
-
-
-
-
-
-
-                <!--Search Bar------->
-                <form class="box">
-                  <div class="field is-flex is-three-fifths">
-                    <label class="label row mx-5">Search</label>
-                    <div class="control">
-                      <input class="input" type="email" placeholder="What do you want to play?">
-                    </div>
-                    <div>
-                      <a class="button mx-5">Let's Go</a>
-                    </div>
-                  </div>
-                  <!--User Posts-->
-                  <div class="container">
-                    <div class="columns">
-                      <div class="column">
-                        <div class="card">
-                          <div class="card-content">
-                            {{#each user.username}}
-                            {{/each}}
-                            <br>
-                            <br>
-                            {{ user.userPost }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="container">
-                        <div class="columns">
-                          <div class="column">
-                            <div class="card">
-                              <div class="card-content">
-                                {{#each user.username}}
-                                {{/each}}
-                                <br>
-                                <br>
-                                {{user.userPost}}
-                              </div>
-                            </div>
-                          </div>
-                          <div class="container">
-                            <div class="columns">
-                              <div class="column">
-                                <div class="card">
-                                  <div class="card-content">
-                                    {{#each user.username}}
-                                    {{/each}}
-                                    <br>
-                                    <br>
-                                    {{user.userPost}}
-                                  </div>
-                                </div>
-                              </div>
-
-
-
-
-                              </body>
+  
+  
