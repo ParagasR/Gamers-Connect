@@ -11,7 +11,12 @@
     </header>
 
     <main>
-        {{{ body }}}
+        {{#if req.session.loggedIn}}
+        {{/if}}
+
+        {{{body}}}
+
+        
     </main>
 </body>
 
