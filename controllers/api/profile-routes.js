@@ -82,7 +82,6 @@ router.post('/picture', type, async (req, res) => {
                 },
             })
         res.status(200).json(profile)
-        // res.status(200).render('/profile', { profile })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
@@ -94,7 +93,8 @@ router.post('/bio', type, async (req, res) => {
         console.log(req.body.userBio)
         const profile = await Profile.update(
             {
-                user_bio: req.body.userBio
+                user_bio: req.body.userBio,
+                favorite_games: req.body.favGames,
             },
             {
                 where: {
