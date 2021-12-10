@@ -4,7 +4,7 @@
 
 const newFormHandler = async (event) => {
   event.preventDefault();
-  let comment = document.querySelector('#tempHTMLID').value;
+  let comment = document.querySelector('#comment-field').value;
   if (comment) {
     const response = await fetch('/api/post/comment', {
       method: 'POST',
@@ -13,7 +13,7 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.querySelector('#tempHTMLID').value = "";
+      document.querySelector('#comment-field').value = "";
       document.location.reload();
     } else {
       alert(response.statusText)
@@ -22,5 +22,21 @@ const newFormHandler = async (event) => {
 };
 
 document
-  .querySelector('#tempHTMLID')
+  .querySelector('#add-comment')
   .addEventListener('submit', newFormHandler)
+
+document
+  .querySelector('#create-new')
+  .addEventListener('click', (event) => {
+    document
+      .querySelector('#new')
+      .classList.add('is-active')
+  })
+
+document
+  .querySelector('#add-background')
+  .addEventListener('click', (event) => {
+    document
+      .querySelector('#new')
+      .classList.remove('is-active')
+  })

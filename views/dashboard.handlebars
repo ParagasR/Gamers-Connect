@@ -38,17 +38,26 @@
             <form id='profile'>
                 <h2>Edit Profile</h2>
                 <div class='field'>
-                    <div class=''>
+                    <div>
                         {{!-- area for the picture upload --}}
                         <h4 class="image header"><label for="image_url">Upload a photo (required)</label></h4>
                         <div class='control'>
                             <input type="file" id="picture-url" name="image_url">
                         </div>
                     </div>
-                    <div class=''>
+                    <div>
+                        {{!-- area for bio --}}
                         <label for='edit-bio'>Edit Bio:</label>
                         <div class='control'>
                             <textarea class='textarea' placeholder='' id='edit-bio'></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        {{!-- area for favGames --}}
+                        <label for='edit-favGames'>List your favorite games:</label>
+                        <div class='control'>
+                            <textarea class='textarea' placeholder='Seperate each game with a comma...'
+                                id='game-content'></textarea>
                         </div>
                     </div>
                     <div class='control'>

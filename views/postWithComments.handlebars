@@ -1,0 +1,44 @@
+<section>
+    <h2 class="title is-3 mx-2">{{post.title}}</h2>
+    <div class="card">
+        {{post.post}}
+    </div>
+    {{#if post.comments}}
+    {{#each post.comments as |element|}}
+    <div class="card">
+        <div>
+            {{element.user.user}}
+            {{format_date element.createdAt}}
+        </div>
+        <div>
+            {{element.comment}}
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+    <button class="button" id="create-new">New Comment</button>
+</section>
+
+{{! modal to add a comment }}
+<div class="modal" id="new">
+    <div class="modal-background" id="add-background"></div>
+    <div class="modal-content">
+        <div class="card">
+            <form id="add-comment">
+                <div class="title is-1">Add Comment</div>
+                <div class="field">
+                    {{! comment field form }}
+                    <div>
+                        <input class="textarea" placeholder="Enter comment here..." id="comment-field" />
+                    </div>
+                    {{! submit button }}
+                    <div>
+                        <button class="button" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/newComment.js"></script>
