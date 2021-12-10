@@ -4,10 +4,6 @@ const { User, Post, Profile } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 const cloudinary = require('cloudinary').v2;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0847133 (got the edit profile stuff working)
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 var type = upload.single('image_url');
@@ -39,7 +35,7 @@ require('dotenv').config();
 
 // //  Get profile by id
 router.get('/:id', withAuth, async (req, res) => {
-    try{
+    try {
         const userProfile = await Profile.findByPk(req.params.id, {
             attributes: [
                 'id',
@@ -71,36 +67,9 @@ router.get('/:id', withAuth, async (req, res) => {
 
 
 // Create profile
-<<<<<<< HEAD
-router.post('/', type, function (req, res, next) {
-    console.log(req.body);
-    // console.log(res)
-  return cloudinary.uploader.upload(req.file.path, {secure: true, transformation: [{width: 150, height: 150, gravity: "face", crop: "thumb"}]})
-    // .then((data) => {
-    //     console.log(data);
-    // })
-    .then((data) => {
-        // console.log(data);
-        Profile.create({
-            user_bio: req.body.user_bio,
-            favorite_games: req.body.favorite_games,
-            image_url: data.url
-        },
-        )
-        .then((data) => {
-            console.log(data);
-        }).catch((err) => {
-            console.log(err);
-        })
-        return res.redirect('/profile')
-    }).catch((err) => res.status(500).json(err));
-});
-
-=======
 router.post('/picture', type, async (req, res) => {
     try {
         const profileData = await cloudinary.uploader.upload(req.file.path, { secure: true, transformation: [{ width: 150, height: 150, gravity: "face", crop: "thumb" }] })
->>>>>>> 0847133 (got the edit profile stuff working)
 
         const profile = await Profile.update(
             {
