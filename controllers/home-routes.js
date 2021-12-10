@@ -75,9 +75,10 @@ router.get('/posts/:id', async (req, res) => {
 })
 
 //get all posts by a user
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/profile', async (req, res) => {
   try {
-    const dbUserData = await User.findByPk(req.session.loggedUser, {
+    //change this back req.session.loggedUser
+    const dbUserData = await User.findByPk(1, {
       include: {
         model: Post,
       },

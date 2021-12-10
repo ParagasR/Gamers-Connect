@@ -5,17 +5,12 @@ const withAuth = require('../../utils/auth');
 
 const cloudinary = require('cloudinary').v2;
 
-// cloudinary.config({ 
-//     cloud_name: 'dfdi3vuvy', 
-//     api_key: '864399935628754', 
-//     api_secret: 'IIjTkIv75REFCPTnO5gCopjjPfU' 
-//   });
-
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 var type = upload.single('image_url');
 require('dotenv').config();
 
+//view other profiles
 // // Do I need to get all profiles?
 // router.get('/', async (req, res) => {
 //     try {
@@ -73,116 +68,46 @@ require('dotenv').config();
 
 
 // Create profile
-router.post('/', type, function (req, res, next) {
-    console.log(req.body, req.file);
-    console.log(res)
-  return cloudinary.uploader.upload(req.file.path, {secure: true, transformation: [{width: 150, height: 150, gravity: "face", crop: "thumb"}]})
-    // .then((data) => {
-    //     console.log(data);
-    // })
-    .then((data) => {
-        console.log(data);
-        Profile.create({
-            user_bio: req.body.user_bio,
-            favorite_games: req.body.favorite_games,
-            image_url: data.url
-        },
-        // {
-        // include: [
-        //     {
-        //         model: Post,
-        //     },
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     }
-
-        // ]
-        )
-        .then((data) => {
-            console.log(data);
-        }).catch((err) => {
-            console.log(err);
-        })
-        return res.redirect('/profile')
-    }).catch((err) => res.status(500).json(err));
-});
-
-
-router.post('/', upload.single('image_url'), async (req, res, next) => {
-    console.log(req.body, req.file);
-    if(!req.file.path) {
-        try {
-            let profileData = await Profile.create({
-                    user_bio: req.body.user_bio,
-                    favorite_games: req.body.favorite_games,
-            })
-            const profile = profileData.get({ plain: true})
-            res.render('profile', {
-                profile,
-                loggedIn: req.session.loggedIn,
-            })
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    } else {
-        try {
-
-        } catch (err) {
-
-        }
-    }
-  return cloudinary.uploader.upload(req.file.path, {secure: true, transformation: [{width: 150, height: 150, gravity: "face", crop: "thumb"}]})
-    // .then((data) => {
-    //     console.log(data);
-    // })
-    .then((data) => {
-        console.log(data);
-        Profile.create({
-            user_bio: req.body.user_bio,
-            favorite_games: req.body.favorite_games,
-            image_url: data.url
-        },
-        // {
-        // include: [
-        //     {
-        //         model: Post,
-        //     },
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     }
-
-        // ]
-        )
-        .then((data) => {
-            console.log(data);
-        }).catch((err) => {
-            console.log(err);
-        })
-        return res.redirect('/test.html')
-    }).catch((err) => res.status(500).json(err));
-});
-// Delete Profile?
-
-
-// update bio
-router.put('/profile/bio', withAuth, async (req, res) => {
+router.post('/picture', type, async (req, res) => {
     try {
-        const editBio = await Profile.update(
+        const profileData = await cloudinary.uploader.upload(req.file.path, { secure: true, transformation: [{ width: 150, height: 150, gravity: "face", crop: "thumb" }] })
+
+        const profile = await Profile.update(
             {
-                user_bio: req.body.bioValue,
+                image_url: profileData.url
             },
             {
                 where: {
-                    id: req.session.loggedUser,
-                }
-            }
-        );
-        res.status(200).json(editBio)
+                    //change this back to loggedin User
+                    id: 1,
+                },
+            })
+        res.status(200).json(profile)
+        // res.status(200).render('/profile', { profile })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
     }
-})
+});
+
+router.post('/bio', type, async (req, res) => {
+    try {
+        console.log(req.body.userBio)
+        const profile = await Profile.update(
+            {
+                user_bio: req.body.userBio
+            },
+            {
+                where: {
+                    //change this back to loggedin User
+                    id: 1,
+                },
+            })
+        res.status(200).json(profile)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+});
+
 module.exports = router;
