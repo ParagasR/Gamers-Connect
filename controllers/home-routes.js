@@ -15,8 +15,11 @@ router.get('/', async (req, res) => {
       },
     });
 
+    const allGames = await Game.findAll()
+
+    const games = allGames.map((game) => game.get({ plain: true }))
     const posts = allPosts.map((post) => post.get({ plain: true }))
-    res.render('post', { posts })
+    res.render('post', { posts, games, loggedIn: req.session.loggedIn })
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
