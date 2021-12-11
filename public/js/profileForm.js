@@ -26,7 +26,7 @@ const formSubmit = async (event) => {
     } else if (response2) {
         console.log('successfully sent bio and favorite games');
     } else {
-        console.log('we fucked up');
+        console.log('we messed up');
     }
 }
 

@@ -1,25 +1,32 @@
 const router = require('express').Router();
-const { Post, Comment } = require('../../models');
+const { Post, Comment, Game } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //TODO
 //add middleware Auth
 
 // new Post
-router.post('/:id', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
+    const [gameData, created] = await Game.findOrCreate({
+      where: {
+        title: req.body.game,
+      }
+    })
+
     const newPost = await Post.create({
       title: req.body.title,
-      post: req.body.comment,
+      content: req.body.comment,
       user_id: req.session.loggedUser,
-      game_id: req.params.id,
+      game_id: gameData.get({ plain: true }).id,
     });
+
     req.session.save(() => {
       res.status(204).json(newPost)
     })
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(err)
+    res.status(500).json(err)
   }
 });
 

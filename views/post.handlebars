@@ -1,3 +1,47 @@
-{{#each posts as |post|}}
-{{> post-partials}}
-{{/each}}
+<section>
+    {{#each posts as |post|}}
+    {{> post-partials}}
+    {{/each}}
+
+    <button class='button' id='new-post'>New Post</button>
+</section>
+
+{{! modal to add a post }}
+<div class="modal" id="new">
+    <div class="modal-background" id="add-background"></div>
+    <div class="modal-content">
+        <div class="card">
+            <form id="add-post">
+                <div class="title is-1">New Post</div>
+                <div class="field">
+                    {{! title field form }}
+                    <div class='control'>
+                        <input class="input" placeholder="Enter title here..." id="title-field" autocomplete="off"
+                            require />
+                    </div>
+                    {{!-- game select or add field --}}
+                    <div class='control'>
+                        <label for='game'>Choose or add a game:</label>
+                        <input list='games' name='game' id='game' autocomplete="off" require>
+                        <datalist id='games'>
+                            {{#each games as |game|}}
+                            <option value='{{game.title}}'>
+                                {{/each}}
+                        </datalist>
+                    </div>
+                    {{! comment field form }}
+                    <div class='control'>
+                        <input class="textarea" placeholder="Enter comment here..." id="post-field" autocomplete="off"
+                            require />
+                    </div>
+                    {{! submit button }}
+                    <div class='control'>
+                        <button class="button" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/newPost.js"></script>
