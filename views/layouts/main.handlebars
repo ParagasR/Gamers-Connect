@@ -8,8 +8,46 @@
 
 <body>
     <header>
+        <!--columns/navigation bar------>
+<div id="header-container" class="columns">
+  <div class="column">
+    <div id="navbar-container" class="card">
+      <div id="navbar" class="card-content">
+        <a class="mx-3" href="/">Home</a>
+        <a class="mx-3" href="/profile">User Dashboard</a>
+        <a class="mx-3" href="">Wishlist</a>
+        <a class="mx-3" href="">Future Releases</a>
+      </div>
+
+    </div>
+  </div>
+  <!--Login/Logout/Sign up-->
+  <div>
+    <!-- if statement -->
+    <a id="login-buttons" class="button mt-5 mx-1">Login</a>
+    <a id="login-buttons" class="button mt-5 mx-1">Sign Up</a>
+    <!-- else -->
+    <a id="login-buttons" class="button mt-5 mx-1">Logout</a>
+  </div>
+  <!--Logo-->
+  <figure id="logo" class="image is-128x128 is-justify-content-right">
+    <img src="/public/images/gc-logo.png" alt="logo goes here">
+  </figure>
+</div>
+
+<!--Search Bar------->
+<form id="sb-container" class="box">
+  <div class="field is-flex is-three-fifths">
+    <div class="control">
+      <input class="input" type="search" placeholder="What do you want to play?">
+    </div>
+    <div>
+      <a class="button mx-5">Let's Go</a>
+    </div>
     </header>
 
+
+  {{> post-partials}}
     <main>
         {{#if req.session.loggedIn}}
         {{/if}}
