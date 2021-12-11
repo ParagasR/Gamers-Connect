@@ -1,61 +1,63 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-    <header>
-        <!--columns/navigation bar------>
-<div id="header-container" class="columns">
-  <div class="column">
-    <div id="navbar-container" class="card">
-      <div id="navbar" class="card-content">
-        <a class="mx-3" href="/">Home</a>
-        <a class="mx-3" href="/profile">User Dashboard</a>
-        <a class="mx-3" href="">Wishlist</a>
-        <a class="mx-3" href="">Future Releases</a>
+  <header>
+    <!--columns/navigation bar------>
+    <div id="header-container" class="columns">
+      <div class="column">
+        <div id="navbar-container" class="card">
+          <div id="navbar" class="card-content">
+            <a class="mx-3" href="/">Home</a>
+            <a class="mx-3" href="/profile">User Dashboard</a>
+            <a class="mx-3" href="">Wishlist</a>
+            <a class="mx-3" href="">Future Releases</a>
+          </div>
+
+        </div>
       </div>
-
-    </div>
-  </div>
-  <!--Login/Logout/Sign up-->
-  <div>
-    <!-- if statement -->
-    <a id="login-buttons" class="button mt-5 mx-1">Login</a>
-    <a id="login-buttons" class="button mt-5 mx-1">Sign Up</a>
-    <!-- else -->
-    <a id="login-buttons" class="button mt-5 mx-1">Logout</a>
-  </div>
-  <!--Logo-->
-  <figure id="logo" class="image is-128x128 is-justify-content-right">
-    <img src="/public/images/gc-logo.png" alt="logo goes here">
-  </figure>
-</div>
-
-<!--Search Bar------->
-<form id="sb-container" class="box">
-  <div class="field is-flex is-three-fifths">
-    <div class="control">
-      <input class="input" type="search" placeholder="What do you want to play?">
-    </div>
-    <div>
-      <a class="button mx-5">Let's Go</a>
-    </div>
-    </header>
-
-
-  {{> post-partials}}
-    <main>
-        {{#if req.session.loggedIn}}
+      <!--Login/Logout/Sign up-->
+      <div>
+        {{#if loggedIn}}
+        <a id="login-buttons" class="button mt-5 mx-1">Logout</a>
+        <!-- else -->
+        {{else}}
+        <a id="login-buttons" class="button mt-5 mx-1" href='/login'>Login</a>
         {{/if}}
+      </div>
+      <!--Logo-->
+      <figure id="logo" class="image is-128x128 is-justify-content-right">
+        <img src="images/gc-logo.png" alt="logo goes here">
+      </figure>
+    </div>
 
-        {{{body}}}
+    <!--Search Bar------->
+    <form id="sb-container" class="box">
+      <div class="field is-flex is-three-fifths">
+        <div class="control">
+          <input class="input" type="search" placeholder="What do you want to play?">
+        </div>
+        <div>
+          <a class="button mx-5">Let's Go</a>
+        </div>
+    </form>
+  </header>
 
-        
-    </main>
+
+
+  <main>
+
+    {{{body}}}
+
+  </main>
+  {{#if loggedIn}}
+  <script type='text/javascript' src='js/logout.js'></script>
+  {{/if}}
 </body>
 
 </html>
