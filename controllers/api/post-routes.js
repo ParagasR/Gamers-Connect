@@ -31,14 +31,14 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 //new Comment
-router.post('/comment', withAuth, async (req, res) => {
+router.post('/comment', async (req, res) => {
   try {
     const newComment = await Comment.create({
       comment: req.body.comment,
       user_id: req.session.loggedUser,
       post_id: req.session.currentPost,
     });
-
+    console.log(newComment)
     req.session.save(() => {
       res.status(204).json(newComment);
     })

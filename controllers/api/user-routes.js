@@ -6,7 +6,7 @@ const withAuth = require('../../utils/auth')
 //check out create user to make sure all proper data is being sent over to create the user
 
 //logout
-router.post('/logout', withAuth, (req, res) => {
+router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
-        email: req.body.username,
+        username: req.body.username,
       },
     });
 
@@ -56,7 +56,6 @@ router.post('/', async (req, res) => {
     const dbUserData = await User.create({
       username: req.body.username,
       password: req.body.password,
-      //add more? pfp image
     });
 
     req.session.save(() => {
