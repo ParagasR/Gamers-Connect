@@ -36,7 +36,7 @@ document
     .addEventListener('submit', formSubmit)
 
 document
-    .querySelector('#edit-button')
+    .querySelector('#edit-profile-button')
     .addEventListener('click', (event) => {
         document.querySelector('#edit-profile')
             .classList.add('is-active')
@@ -74,11 +74,11 @@ const editShowModal = async (event) => {
         currentPostId = id;
 
         const post = await fetch(`/edit/${id}`)
-        console.log(post)
         const parsedPost = await post.json();
+        console.log(parsedPost)
         if (post.ok) {
             document.querySelector('#edit-title-field').value = parsedPost.title;
-            document.querySelector('#edit-post-field').value = parsedPost.post;
+            document.querySelector('#edit-post-field').value = parsedPost.content;
             document.querySelector('#edit').classList.add('is-active');
         } else {
             alert('Failed to open edit window')
@@ -90,14 +90,13 @@ const editShowModal = async (event) => {
 const editHandler = async (event) => {
     event.preventDefault();
 
-
-    const post = document.querySelector('#edit-post-field').value;
+    const content = document.querySelector('#edit-post-field').value;
     const title = document.querySelector('#edit-title-field').value;
     try {
-        if (post && title && currentPostId) {
+        if (content && title && currentPostId) {
             const response = await fetch(`api/post/edit/${currentPostId}`, {
                 method: 'PUT',
-                body: JSON.stringify({ post, title }),
+                body: JSON.stringify({ content, title }),
                 headers: { 'Content-type': 'application/json' }
             });
             console.log(response)

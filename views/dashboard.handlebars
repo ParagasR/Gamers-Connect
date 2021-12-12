@@ -1,12 +1,12 @@
 <section>
     <div>
         <div id="profile-picture">
-        <img class="is-rounded" src="images/default-pfp.png" alt="">
+            <img class="is-rounded" src="images/default-pfp.png" alt="">
         </div>
         <div id="user-bio">
-            
+
         </div>
-    </div>    
+    </div>
 </section>
 
 
@@ -66,7 +66,7 @@
                         {{!-- area for bio --}}
                         <label for='edit-bio'>Edit Bio:</label>
                         <div class='control'>
-                            <textarea class='textarea' placeholder='' id='edit-bio'></textarea>
+                            <textarea class='textarea' placeholder='' id='edit-bio' autocomplete="off"></textarea>
                         </div>
                     </div>
                     <div>
@@ -74,7 +74,7 @@
                         <label for='edit-favGames'>List your favorite games:</label>
                         <div class='control'>
                             <textarea class='textarea' placeholder='Seperate each game with a comma...'
-                                id='game-content'></textarea>
+                                id='game-content' autocomplete="off"></textarea>
                         </div>
                     </div>
                     <div class='control'>
@@ -97,11 +97,11 @@
                 <div class="field">
                     {{! title field form }}
                     <div>
-                        <input class="input" id="edit-title-field" />
+                        <input class="input" id="edit-title-field" autocomplete="off" />
                     </div>
                     {{! comment field form }}
                     <div>
-                        <input class="textarea" id="edit-post-field" />
+                        <input class="textarea" id="edit-post-field" autocomplete="off" />
                     </div>
                     {{! submit button }}
                     <div>
