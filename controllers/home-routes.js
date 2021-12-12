@@ -121,6 +121,17 @@ router.get('/profile', async (req, res) => {
   }
 })
 
+router.get('/edit/:id', async (req, res) => {
+  try {
+    const postDetails = await Post.findByPk(req.params.id);
+    const post = postDetails.get({ plain: true })
+    res.status(200).json(post)
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/')
