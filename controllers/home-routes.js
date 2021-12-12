@@ -27,23 +27,40 @@ router.get('/', async (req, res) => {
 })
 
 //get all posts from the game
-router.get('/game/:id', async (req, res) => {
+router.get('/search/:title', async (req, res) => {
   try {
-    const gamePosts = await Game.findByPk(req.params.id, {
-      include: {
-        model: Post,
-        attributes: ['title', 'content', 'createdAt'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
+    const game = req.params.title.split('-').join(' ')
+
+    const gameData = await Game.findOne({
+      where: {
+        title: game,
       }
-    })
-    const game = gamePosts.get({ plain: true })
+    });
+
+    if (gameData === null) {
+      console.log('no game found')
+      res.redirect('/');
+      return
+    }
+
+    const allPosts = await Post.findAll({
+      include: {
+        model: User, Game,
+        attributes: ['username']
+      },
+      where: {
+        game_id: gameData.get({ plain: true }).id
+      }
+    });
+
+    const allGames = await Game.findAll()
+
+    const games = allGames.map((game) => game.get({ plain: true }))
+    const posts = allPosts.map((post) => post.get({ plain: true }))
     if (req.session.loggedIn) {
-      res.render('tempHandlebarFile', { game, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+      res.render('post', { posts, games, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
     } else {
-      res.render('tempHandlebarFile', { game })
+      res.render('post', { posts, games })
     }
   } catch (err) {
     console.log(err);
