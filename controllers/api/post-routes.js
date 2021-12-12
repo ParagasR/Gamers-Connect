@@ -76,11 +76,12 @@ router.put('/edit/:id', withAuth, async (req, res) => {
     const editPost = await Post.update(
       {
         title: req.body.title,
-        post: req.body.post,
+        content: req.body.content,
       },
       {
         where: {
           id: req.params.id,
+          user_id: req.session.loggedUser,
         },
       });
 
