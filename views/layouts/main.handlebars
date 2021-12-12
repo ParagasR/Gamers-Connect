@@ -40,12 +40,13 @@
     <form id="sb-container" class="box">
       <div class="field is-flex is-three-fifths">
         <div class="control">
-          <input class="input" type="search" placeholder="What do you want to play?">
+          <input class="input" type="search" placeholder="What do you want to play?" id='searchBar'>
         </div>
-        <div>
-          <a class="button mx-5">Let's Go</a>
+        <div class="control">
+          <button class="button mx-5" type='submit'>Let's Go</button>
         </div>
     </form>
+
   </header>
 
 
@@ -55,6 +56,7 @@
     {{{body}}}
 
   </main>
+  <script type='text/javascript' src='js/searchBar.js'></script>
   {{#if loggedIn}}
   <script type='text/javascript' src='js/logout.js'></script>
   {{/if}}
