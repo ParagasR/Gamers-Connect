@@ -74,7 +74,7 @@ const editShowModal = async (event) => {
         currentPostId = id;
 
         const post = await fetch(`/edit/${id}`)
-
+        console.log(post)
         const parsedPost = await post.json();
         if (post.ok) {
             document.querySelector('#edit-title-field').value = parsedPost.title;
