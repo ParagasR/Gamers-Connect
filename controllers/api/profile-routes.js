@@ -77,8 +77,7 @@ router.post('/picture', type, async (req, res) => {
             },
             {
                 where: {
-                    //change this back to loggedin User
-                    id: 1,
+                    id: req.session.loggedUser,
                 },
             })
         res.status(200).json(profile)
@@ -98,8 +97,7 @@ router.post('/bio', type, async (req, res) => {
             },
             {
                 where: {
-                    //change this back to loggedin User
-                    id: 1,
+                    id: req.session.loggedUser,
                 },
             })
         res.status(200).json(profile)

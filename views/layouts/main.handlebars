@@ -24,7 +24,9 @@
       <!--Login/Logout/Sign up-->
       <div>
         {{#if loggedIn}}
-        <a id="login-buttons" class="button">Logout</a>
+
+        <a id="logout-buttons" class="button mt-5 mx-1">Logout</a>
+
         <!-- else -->
         {{else}}
         <a id="login-buttons" class="button" href='/login'>Login</a>
@@ -32,7 +34,7 @@
       </div>
       <!--Logo-->
       <figure id="logo" class="image is-128x128 is-justify-content-right">
-        <img src="images/gc-logo.png" alt="logo goes here">
+        <img src="/images/gc-logo.png" alt="logo goes here">
       </figure>
     </div>
 
@@ -40,12 +42,13 @@
     <form id="sb-container" class="box">
       <div class="field is-flex is-three-fifths">
         <div class="control">
-          <input class="input" type="search" placeholder="What do you want to play?">
+          <input class="input" type="search" placeholder="What do you want to play?" id='searchBar' autocomplete="off">
         </div>
-        <div>
-          <a class="button mx-5">Let's Go</a>
+        <div class="control">
+          <button class="button mx-5" type='submit'>Let's Go</button>
         </div>
     </form>
+
   </header>
 
 
@@ -55,8 +58,9 @@
     {{{body}}}
 
   </main>
+  <script type='text/javascript' src='/js/searchBar.js'></script>
   {{#if loggedIn}}
-  <script type='text/javascript' src='js/logout.js'></script>
+  <script type='text/javascript' src='/js/logout.js'></script>
   {{/if}}
 </body>
 

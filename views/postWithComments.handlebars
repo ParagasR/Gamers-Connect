@@ -16,7 +16,9 @@
     </div>
     {{/each}}
     {{/if}}
+    {{#if loggedIn}}
     <button class="button" id="create-new">New Comment</button>
+    {{/if}}
 </section>
 
 {{! modal to add a comment }}
@@ -29,7 +31,8 @@
                 <div class="field">
                     {{! comment field form }}
                     <div>
-                        <input class="textarea" placeholder="Enter comment here..." id="comment-field" />
+                        <input class="textarea" placeholder="Enter comment here..." id="comment-field"
+                            autocomplete="off" />
                     </div>
                     {{! submit button }}
                     <div>

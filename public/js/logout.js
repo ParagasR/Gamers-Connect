@@ -1,12 +1,8 @@
-//TODO
-//replace temp variables: tempHTMLID
-
 const logout = async () => {
   const response = await fetch('api/users/logout', {
     method: 'POST',
     header: { 'Content-Type': 'application/json' },
   });
-
   if (response.ok) {
     document.location.replace('/')
   } else {
@@ -16,5 +12,5 @@ const logout = async () => {
 };
 
 document
-  .querySelector('#tempHTMLID')
+  .querySelector('#logout-buttons')
   .addEventListener('click', logout);

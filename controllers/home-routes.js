@@ -27,23 +27,40 @@ router.get('/', async (req, res) => {
 })
 
 //get all posts from the game
-router.get('/game/:id', async (req, res) => {
+router.get('/search/:title', async (req, res) => {
   try {
-    const gamePosts = await Game.findByPk(req.params.id, {
-      include: {
-        model: Post,
-        attributes: ['title', 'content', 'createdAt'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
+    const game = req.params.title.split('-').join(' ')
+
+    const gameData = await Game.findOne({
+      where: {
+        title: game,
       }
-    })
-    const game = gamePosts.get({ plain: true })
+    });
+
+    if (gameData === null) {
+      console.log('no game found')
+      res.redirect('/');
+      return
+    }
+
+    const allPosts = await Post.findAll({
+      include: {
+        model: User, Game,
+        attributes: ['username']
+      },
+      where: {
+        game_id: gameData.get({ plain: true }).id
+      }
+    });
+
+    const allGames = await Game.findAll()
+
+    const games = allGames.map((game) => game.get({ plain: true }))
+    const posts = allPosts.map((post) => post.get({ plain: true }))
     if (req.session.loggedIn) {
-      res.render('tempHandlebarFile', { game, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+      res.render('post', { posts, games, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
     } else {
-      res.render('tempHandlebarFile', { game })
+      res.render('post', { posts, games })
     }
   } catch (err) {
     console.log(err);
@@ -78,10 +95,10 @@ router.get('/posts/:id', async (req, res) => {
 })
 
 //get all posts by a user
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     //change this back req.session.loggedUser
-    const dbUserData = await User.findByPk(1, {
+    const dbUserData = await User.findByPk(req.session.loggedUser, {
       include: {
         model: Post,
       },
@@ -101,6 +118,17 @@ router.get('/profile', async (req, res) => {
     user = userWithoutPosts.get({ plain: true })
     console.log(user)
     res.render('dashboard', { user, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
+  }
+})
+
+router.get('/edit/:id', async (req, res) => {
+  try {
+    const postDetails = await Post.findByPk(req.params.id);
+    const post = postDetails.get({ plain: true })
+    res.status(200).json(post)
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 })
 
