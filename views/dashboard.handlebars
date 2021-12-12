@@ -1,5 +1,23 @@
 <section>
     <div>
+        <div id="profile-picture">
+        <img class="is-rounded" src="images/default-pfp.png" alt="">
+        </div>
+        <div id="user-bio">
+            
+        </div>
+    </div>    
+</section>
+
+
+
+
+
+
+
+
+<section>
+    <div>
         <div>
             {{user.user}}
         </div>
@@ -8,20 +26,19 @@
             {{#if user.bio}}
             {{user.bio}}
             {{/if}}
-            <button class='button' id='edit-button'>Edit Profile</button>
+            <button class='button' id='edit-profile-button'>Edit Profile</button>
         </div>
     </div>
     {{#if user.posts}}
     <ul>
-        <h1>posts</h1>
         {{#each user.posts as |post|}}
         <li>
             <div>
                 <a href='/post/{{id}}'>
                     {{> post-partials}}
                 </a>
-                <button class='button' id='delete-button' data-delete={{id}}>delete</button>
-                <button class='button' id='edit-button' data-edit={{id}}>edit</button>
+                <button class='button' id='delete-button' data-delete={{id}}>Delete</button>
+                <button class='button' id='edit-button' data-edit={{id}}>Edit</button>
             </div>
         </li>
         {{/each}}
