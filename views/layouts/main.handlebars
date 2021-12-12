@@ -24,7 +24,7 @@
       <!--Login/Logout/Sign up-->
       <div>
         {{#if loggedIn}}
-        <a id="login-buttons" class="button mt-5 mx-1">Logout</a>
+        <a id="logout-buttons" class="button mt-5 mx-1">Logout</a>
         <!-- else -->
         {{else}}
         <a id="login-buttons" class="button mt-5 mx-1" href='/login'>Login</a>
@@ -58,7 +58,7 @@
   </main>
   <script type='text/javascript' src='/js/searchBar.js'></script>
   {{#if loggedIn}}
-  <script type='text/javascript' src='js/logout.js'></script>
+  <script type='text/javascript' src='/js/logout.js'></script>
   {{/if}}
 </body>
 

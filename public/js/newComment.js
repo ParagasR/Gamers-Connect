@@ -1,5 +1,4 @@
 //TODO
-//replace temp variables: tempHTMLID
 //double check format of HTML to match js text fields
 
 const newFormHandler = async (event) => {

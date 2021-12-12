@@ -69,4 +69,32 @@
     </div>
 </div>
 
+{{#if user.posts}}
+{{! modal to edit a post }}
+<div class="modal" id="edit">
+    <div class="modal-background" id='edit-background'></div>
+    <div class="modal-content">
+        <div class="card">
+            <form id="edit-post">
+                <div class="title is-1">Edit Post</div>
+                <div class="field">
+                    {{! title field form }}
+                    <div>
+                        <input class="input" id="edit-title-field" />
+                    </div>
+                    {{! comment field form }}
+                    <div>
+                        <input class="textarea" id="edit-post-field" />
+                    </div>
+                    {{! submit button }}
+                    <div>
+                        <button class="button" type="submit">Submit Edit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{/if}}
+
 <script type='text/javascript' src='js/profileForm.js'></script>

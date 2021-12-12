@@ -1,3 +1,4 @@
+// --------------------edit profile handlers and events--------------------
 const formSubmit = async (event) => {
     event.preventDefault();
     let photo = document.getElementById("picture-url").files[0];
@@ -30,8 +31,6 @@ const formSubmit = async (event) => {
     }
 }
 
-
-
 document
     .querySelector('#profile')
     .addEventListener('submit', formSubmit)
@@ -49,3 +48,87 @@ document
         document.querySelector('#edit-profile')
             .classList.remove('is-active')
     })
+
+// --------------------edit and delete posts handlers and events--------------------
+let currentPostId;
+const deleteHandler = async (event) => {
+    if (event.target.getAttribute('data-delete')) {
+        const id = event.target.getAttribute('data-delete');
+
+        const response = await fetch(`api/post/delete/${id}`, {
+            method: 'DELETE',
+        });
+
+
+        if (response.ok) {
+            document.location.reload();
+        } else {
+            alert('Failed to delete project');
+        }
+    }
+};
+
+const editShowModal = async (event) => {
+    if (event.target.getAttribute('data-edit')) {
+        const id = event.target.getAttribute('data-edit')
+        currentPostId = id;
+
+        const post = await fetch(`/edit/${id}`)
+
+        const parsedPost = await post.json();
+        if (post.ok) {
+            document.querySelector('#edit-title-field').value = parsedPost.title;
+            document.querySelector('#edit-post-field').value = parsedPost.post;
+            document.querySelector('#edit').classList.add('is-active');
+        } else {
+            alert('Failed to open edit window')
+        }
+
+    }
+}
+
+const editHandler = async (event) => {
+    event.preventDefault();
+
+
+    const post = document.querySelector('#edit-post-field').value;
+    const title = document.querySelector('#edit-title-field').value;
+    try {
+        if (post && title && currentPostId) {
+            const response = await fetch(`api/post/edit/${currentPostId}`, {
+                method: 'PUT',
+                body: JSON.stringify({ post, title }),
+                headers: { 'Content-type': 'application/json' }
+            });
+            console.log(response)
+            if (response.ok) {
+                document.location.reload()
+            } else {
+                alert('Unable to edit post')
+            }
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+document
+    .querySelector('#edit-button')
+    .addEventListener('click', editShowModal);
+
+document
+    .querySelector('#delete-button')
+    .addEventListener('click', deleteHandler);
+
+document
+    .querySelector('#edit-post')
+    .addEventListener('submit', editHandler);
+
+document
+    .querySelector('#edit-background')
+    .addEventListener('click', (event) => {
+        event.preventDefault;
+        document
+            .querySelector('#edit')
+            .classList.remove('is-active');
+    });

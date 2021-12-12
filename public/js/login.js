@@ -8,8 +8,8 @@ const loginButton = async (event) => {
   const username = document.querySelector('#login-username').value.trim();
   const password = document.querySelector('#login-password').value.trim();
   //check to see if the exist
-  console.log(email + ' ' + password)
-  if (email && password) {
+
+  if (username && password) {
     const response = await fetch('/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
@@ -32,7 +32,7 @@ const signupButton = async (event) => {
   const username = document.querySelector('#signup-username').value.trim();
   const password = document.querySelector('#signup-password').value.trim();
   //check to see if the data exists
-  if (user && password) {
+  if (username && password) {
     //send request to api to submit data to create user
     const response = await fetch('api/users', {
       method: 'POST',
