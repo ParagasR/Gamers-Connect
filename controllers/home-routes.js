@@ -9,16 +9,18 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const allPosts = await Post.findAll({
-      include: {
-        model: User, Game,
+      include: [{
+        model: User,
         attributes: ['username']
       },
+      { model: Game }],
     });
 
     const allGames = await Game.findAll()
 
     const games = allGames.map((game) => game.get({ plain: true }))
     const posts = allPosts.map((post) => post.get({ plain: true }))
+    console.log(posts)
     res.render('post', { posts, games, loggedIn: req.session.loggedIn })
   } catch (err) {
     console.log(err);
@@ -100,9 +102,10 @@ router.get('/profile', withAuth, async (req, res) => {
   try {
     //change this back req.session.loggedUser
     const dbUserData = await User.findByPk(req.session.loggedUser, {
-      include: {
+      include: [{
         model: Post,
-      }
+      },
+      { model: Profile }]
     });
     user = dbUserData.get({ plain: true })
     console.log(user)

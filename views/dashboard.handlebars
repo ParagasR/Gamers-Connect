@@ -1,12 +1,11 @@
 <section>
     <div>
         <div id="profile-picture">
-            <img class="is-rounded"
-                src="/images/default-pfp.png" alt="">
+            <img class="is-rounded" src="/images/default-pfp.png" alt="">
         </div>
         <div class='content' id="user-bio">
-            {{#if user.bio}}
-            <p>{{user.bio}}</p>
+            {{#if user.profile.user_bio}}
+            <p>{{user.profile.user_bio}}</p>
             {{else}}
             <p>Edit your profile to show you bio here!</p>
             {{/if}}
