@@ -46,7 +46,20 @@
 
 /* button not centered over logo rage*/
 /* just kidding sorry bulma*/
+/*uncentered itself im raging*/
 #login-buttons{
+    background-color: var(--light-blue);
+    border: none;
+    font-family:Arial, Helvetica, sans-serif;
+    border-radius: 1rem;
+    margin-left: 50px;
+    margin-top: 30px;
+    margin-right: -32px;
+    height: 40px;
+    width: 100%;
+}
+
+#logout-buttons{
     background-color: var(--light-blue);
     border: none;
     font-family:Arial, Helvetica, sans-serif;
@@ -68,49 +81,55 @@
 }
 
 /* homepage posts*/
-
 #post-card{
     display: flex;
     flex-direction: column;
-    margin: 50px;
-    height: 500px;
-    width: 50%;
-    
+    background-color: var(--dark-blue);
+    justify-content: left;
+    border: solid var(--dark-blue);
 }
 
-#post-card-header{
-    background-color: var(--light-blue);
-    border: var(--dark-blue) solid 5px;
-    height: 175px;
-
-}
-/*title*/
 #post-card h1{
-    margin: 50px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
     margin-top: 10px;
-    margin-bottom: 10px;
-    
+    margin-left: 20px;
+    font-size: 40px;
 }
 
-/*username*/
 #post-card h2{
-    margin-left: -140px;
-    margin-top: 100px;
+    color: var(--light-blue);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    margin-left: 20px;
     font-size: 20px;
-    color: #2b2c2c;
+}
+
+#card-post h1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    float: left; 
 }
 
 #card-post{
-    width: 100%;
-    justify-content: left;
-    background: rgb(157,166,161);
-    background: linear-gradient(90deg, rgba(157,166,161,1) 5%, rgba(115,126,128,1) 30%, rgba(116,128,126,1) 41%, rgba(162,172,171,1) 65%, rgba(167,184,183,1) 82%, rgba(137,147,149,1) 93%);
-    margin-top: -30px;
-    height: 75%;
-    color: white;
-    border: var(--dark-blue) solid 5px;
+    padding: 150px;
 }
+
+/* fix one pixel*/
+#card-post{
+    display: flex;
+    flex-direction: column;
+    margin: 150px;
+    justify-content: left;    
+    background: rgb(137,150,150);
+    background: radial-gradient(circle, rgba(137,150,150,1) 4%, rgba(201,215,218,1) 24%, rgba(192,197,196,1) 42%, rgba(195,200,199,1) 54%, rgba(188,195,194,1) 63%, rgba(205,215,215,1) 73%);
+    padding: 200px;
+    margin-top: -25px;
+    margin-left: 80px;
+    margin-right: -1px;
+    border: solid var(--dark-blue);
+}
+
 
 /* user dashboard */
 #profile-picture{
@@ -124,26 +143,32 @@
     overflow: hidden;
     margin-left: 60px;
     margin-top: 40px;
+    margin-bottom: 70px;
 }
 
 
 #edit-profile-button{
-    justify-content: right;
-    margin-top: 150px;
-    margin-left: 20px;
-    margin-bottom: -25px;
-    background-color: var(--dark-blue);
-    color: white;
+    float: right;
+    margin-right: 100px;
+    margin-top: -350px;
+    background-color: var(--light-blue);
+    color: black;
 }
 
 #delete-button{
-    justify-content: right;
-    margin-left: 1650px;
+    float: left;
+    margin-top: -230px;
+    margin-left: 180px;
     background-color: var(--dark-blue);
     color: white;
+    border-radius: 15%;
 }
 
-/*testing bio div*/
-#user-bio{
+#edit-button{
+    float: left;
+    margin-top: -230px;
+    margin-left: 110px;
     background-color: var(--light-blue);
+    color: black;
+    border-radius: 15%;
 }
