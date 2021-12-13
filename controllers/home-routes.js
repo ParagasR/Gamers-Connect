@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment, Game } = require('../models');
+const { User, Post, Comment, Game, Profile } = require('../models');
 
 const withAuth = require('../utils/auth');
 
@@ -9,16 +9,18 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const allPosts = await Post.findAll({
-      include: {
-        model: User, Game,
+      include: [{
+        model: User,
         attributes: ['username']
       },
+      { model: Game }],
     });
 
     const allGames = await Game.findAll()
 
     const games = allGames.map((game) => game.get({ plain: true }))
     const posts = allPosts.map((post) => post.get({ plain: true }))
+    console.log(posts)
     res.render('post', { posts, games, loggedIn: req.session.loggedIn })
   } catch (err) {
     console.log(err);
@@ -86,6 +88,7 @@ router.get('/posts/:id', async (req, res) => {
       }]
     });
     const post = postDetails.get({ plain: true })
+    console.log(post)
     req.session.currentPost = req.params.id;
     res.render('postWithComments', { post, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   } catch (err) {
@@ -95,14 +98,19 @@ router.get('/posts/:id', async (req, res) => {
 })
 
 //get all posts by a user
+// add it withAuth and req.session.loggedUser
 router.get('/profile', withAuth, async (req, res) => {
   try {
     //change this back req.session.loggedUser
     const dbUserData = await User.findByPk(req.session.loggedUser, {
-      include: {
+      include: [{
         model: Post,
+        include: [
+          { model: User },
+          { model: Game }
+        ]
       },
-      attributes: { excludes: ['password'] }
+      { model: Profile }]
     });
     user = dbUserData.get({ plain: true })
     console.log(user)
@@ -110,7 +118,9 @@ router.get('/profile', withAuth, async (req, res) => {
   } catch (err) {
     console.log(err)
     const userWithoutPosts = await User.findByPk(req.session.loggedUser, {
-      attributes: { exclude: ['password'] }
+      include: {
+        model: Profile
+      }
     });
     if (!userWithoutPosts) {
       res.status(404).json('user doesnt exist')

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Profile } = require('../../models');
 const withAuth = require('../../utils/auth')
 
 //TODO
@@ -57,6 +57,10 @@ router.post('/', async (req, res) => {
       username: req.body.username,
       password: req.body.password,
     });
+
+    const profileData = await Profile.create({
+      user_id: dbUserData.id,
+    })
 
     req.session.save(() => {
       req.session.loggedIn = true;

@@ -5,30 +5,33 @@ const formSubmit = async (event) => {
     let formData = new FormData();
     let userBio = document.querySelector("#edit-bio").value;
     let favGames = document.querySelector("#game-content").value;
-
+    let response1 = { ok: false };
+    let response2 = { ok: false };
     console.log(photo)
     formData.append("image_url", photo);
+    if (photo) {
+        response1 = await fetch('/api/profile/picture', {
+            method: "POST",
+            body: formData,
+        });
 
-    const response1 = await fetch('/api/profile/picture', {
-        method: "POST",
-        body: formData,
-    });
-
-    const response2 = await fetch('/api/profile/bio', {
-        method: "POST",
-        body: JSON.stringify({ userBio, favGames }),
-        headers: { 'Content-Type': 'application/json' },
-    })
-
-    if (response1 && response2) {
-        console.log('every thing sent over successfully');
-    } else if (response1) {
-        console.log('Picture successfully sent over');
-    } else if (response2) {
-        console.log('successfully sent bio and favorite games');
-    } else {
-        console.log('we messed up');
     }
+
+    if (userBio || favGames) {
+        response2 = await fetch('/api/profile/bio', {
+            method: "POST",
+            body: JSON.stringify({ userBio, favGames }),
+            headers: { 'Content-Type': 'application/json' },
+        })
+    }
+    console.log(response2)
+    if (response1.ok || response2.ok) {
+        document.location.reload();
+    } else {
+        alert('Failed to update profile')
+    }
+
+
 }
 
 document
