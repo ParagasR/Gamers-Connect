@@ -104,6 +104,10 @@ router.get('/profile', withAuth, async (req, res) => {
     const dbUserData = await User.findByPk(req.session.loggedUser, {
       include: [{
         model: Post,
+        include: [
+          { model: User },
+          { model: Game }
+        ]
       },
       { model: Profile }]
     });
