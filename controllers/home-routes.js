@@ -101,9 +101,8 @@ router.get('/profile', async (req, res) => {
     //change this back req.session.loggedUser
     const dbUserData = await User.findByPk(1, {
       include: {
-        model: Post, Profile
-      },
-      attributes: { excludes: ['password'] }
+        model: Post,
+      }
     });
     user = dbUserData.get({ plain: true })
     console.log(user)
@@ -111,7 +110,6 @@ router.get('/profile', async (req, res) => {
   } catch (err) {
     console.log(err)
     const userWithoutPosts = await User.findByPk(req.session.loggedUser, {
-      attributes: { exclude: ['password'] },
       include: {
         model: Profile
       }
