@@ -1,11 +1,11 @@
-<section>
-    <h2 class="title is-3 mx-2">{{post.title}}</h2>
-    <div class="card">
-        {{post.post}}
+<section id="comments-container">
+    <h2 id="comments-title" class="title is-3 mx-2">{{post.title}}</h2>
+    <div id="post-with-comments" class="card">
+        {{post.content}}
     </div>
     {{#if post.comments}}
     {{#each post.comments as |element|}}
-    <div class="card">
+    <div id="comments-card" class="card">
         <div>
             {{element.user.user}}
             {{format_date element.createdAt}}
