@@ -150,9 +150,9 @@ label {
 #new-post{
     background-color: var(--dark-blue);
     color: white;
-    position:relative;
-    margin-top: -3600px;
-    margin-left: 250px;
+    position:fixed;
+    bottom:1vw;
+    left: 1vw;
     font-family: Arial, Helvetica, sans-serif;
     border: solid  2px var(--grey);
     border-radius: 1em;
@@ -234,7 +234,9 @@ label {
 #create-new{
     background-color: var(--light-blue);
     color: black;
-    margin-top: 15px;
+    position: fixed;
+    bottom: 1vw;
+    right:1vw;
     border-radius: 1em;
 }
 
