@@ -5,8 +5,18 @@
 }
 /*homepage*/
 #login-page {
-    height: 100vh;
+    height: 75vh;
     width: 100vw;
+}
+
+label {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+
+#login-page-button {
+    background-color: var(--dark-blue);
+    color:white;
 }
 
 .card{

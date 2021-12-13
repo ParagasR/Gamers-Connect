@@ -2,28 +2,30 @@
 <div class='columns is-flex is-justify-content-center is-align-items-center' id='login-page'>
     {{!-- login card --}}
     <div class='column card mx-6 is-one-quarter'>
-        <form class='login'>
-            <h2>Login</h2>
+        <form class='login content'>
+            <div class='is-flex is-justify-content-center'>
+                <h2>Login</h2>
+            </div>
             <div class='field'>
                 {{!-- email form --}}
                 <div>
-                    <label for='login-username'>Username:</label>
-                    <input class='input' id='login-username' autocomplete="off" />
+                    <label class='ml-5' for='login-username'>Username:</label>
+                    <input class='input mb-3 ml-5' id='login-username' autocomplete="off" />
                 </div>
                 {{!-- password form --}}
                 <div>
-                    <label for='login-password'>Password:</label>
-                    <input class='input' type='password' id='login-password' autocomplete="off" />
+                    <label class='ml-5' for='login-password'>Password:</label>
+                    <input class='input mb-3 ml-5' type='password' id='login-password' autocomplete="off" />
                 </div>
                 {{!-- login button --}}
                 <div class='is-flex is-justify-content-center mt-3'>
-                    <button class='button' type="submit">Login</button>
+                    <button class='button' type="submit" id='login-page-button'>Login</button>
                 </div>
             </div>
         </form>
         <div class='is-flex is-justify-content-center mt-3'>
             <a id='create'>
-                create new user
+                Don't have a profile? Click here!
             </a>
         </div>
     </div>
@@ -35,27 +37,29 @@
     <div class="modal-background" id='create-background'></div>
     <div class="modal-content">
         <div class='column card mx-6'>
-            <form class='signup'>
-                <h2>Signup</h2>
+            <form class='signup content'>
+                <div class='is-flex is-justify-content-center'>
+                    <h2>Signup</h2>
+                </div>
                 <div class='field'>
                     {{!-- Username form --}}
                     <div>
-                        <label for='signup-username'>Username:</label>
+                        <label class='ml-6' for='signup-username'>Username:</label>
                         <div class='control'>
-                            <input class='input' type='text' id='signup-username' autocomplete="off" />
+                            <input class='input my-3 ml-6' type='text' id='signup-username' autocomplete="off" />
                         </div>
                     </div>
                     {{!-- password form --}}
                     <div>
-                        <label for='signup-password'>Password:</label>
+                        <label class='ml-6' for='signup-password'>Password:</label>
                         <div class='control'>
-                            <input class='input' type='password' id='signup-password' autocomplete="off" />
+                            <input class='input my-3 ml-6' type='password' id='signup-password' autocomplete="off" />
                         </div>
                     </div>
                     {{!-- submit button --}}
                     <div>
                         <div class='control is-flex is-justify-content-center mt-3'>
-                            <button class='button' type="submit">Submit</button>
+                            <button class='button' type="submit" id='login-page-button'>Submit</button>
                         </div>
                     </div>
                 </div>
