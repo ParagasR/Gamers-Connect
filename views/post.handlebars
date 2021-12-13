@@ -11,18 +11,20 @@
     <div class="modal-background" id="add-background"></div>
     <div class="modal-content">
         <div class="card">
-            <form id="add-post">
-                <div class="title is-1">New Post</div>
-                <div class="field">
+            <form id="add-post" class='content'>
+                <div class="is-flex is-justify-content-center">
+                    <h2>New Post</h2>
+                </div>
+                <div class="field mx-3">
                     {{! title field form }}
                     <div class='control'>
-                        <input class="input" placeholder="Enter title here..." id="title-field" autocomplete="off"
+                        <input class="input mb-3 " placeholder="Enter title here..." id="title-field" autocomplete="off"
                             require />
                     </div>
                     {{!-- game select or add field --}}
                     <div class='control'>
-                        <label for='game'>Choose or add a game:</label>
-                        <input list='games' name='game' id='game' autocomplete="off" require>
+                        <label class='mt-3' for='game'>Choose or add a game:</label>
+                        <input class='mb-3' list='games' name='game' id='game' autocomplete="off" require>
                         <datalist id='games'>
                             {{#each games as |game|}}
                             <option value='{{game.title}}'>
@@ -31,12 +33,12 @@
                     </div>
                     {{! comment field form }}
                     <div class='control'>
-                        <input class="textarea" placeholder="Enter comment here..." id="post-field" autocomplete="off"
-                            require />
+                        <input class="textarea mb-3" placeholder="Enter comment here..." id="post-field"
+                            autocomplete="off" require />
                     </div>
                     {{! submit button }}
-                    <div class='control'>
-                        <button class="button" type="submit">Submit</button>
+                    <div class='control is-flex is-justify-content-center'>
+                        <button class="button mb-3" type="submit">Submit</button>
                     </div>
                 </div>
             </form>
