@@ -6,9 +6,8 @@
     {{#if post.comments}}
     {{#each post.comments as |element|}}
     <div id="comments-card" class="card">
-        <div>
-            {{element.user.user}}
-            {{format_date element.createdAt}}
+        <div class='content'>
+            <h4>{{element.user.username}} - {{format_date element.createdAt}}</h4>
         </div>
         <div>
             {{element.comment}}

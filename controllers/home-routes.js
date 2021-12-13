@@ -88,6 +88,7 @@ router.get('/posts/:id', async (req, res) => {
       }]
     });
     const post = postDetails.get({ plain: true })
+    console.log(post)
     req.session.currentPost = req.params.id;
     res.render('postWithComments', { post, loggedIn: req.session.loggedIn, loggedUser: req.session.loggedUser })
   } catch (err) {
