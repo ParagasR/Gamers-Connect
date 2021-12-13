@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment, Game } = require('../models');
+const { User, Post, Comment, Game, Profile } = require('../models');
 
 const withAuth = require('../utils/auth');
 
@@ -101,7 +101,7 @@ router.get('/profile', async (req, res) => {
     //change this back req.session.loggedUser
     const dbUserData = await User.findByPk(1, {
       include: {
-        model: Post,
+        model: Post, Profile
       },
       attributes: { excludes: ['password'] }
     });
@@ -111,7 +111,10 @@ router.get('/profile', async (req, res) => {
   } catch (err) {
     console.log(err)
     const userWithoutPosts = await User.findByPk(req.session.loggedUser, {
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password'] },
+      include: {
+        model: Profile
+      }
     });
     if (!userWithoutPosts) {
       res.status(404).json('user doesnt exist')

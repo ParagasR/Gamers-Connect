@@ -1,10 +1,14 @@
 <section>
     <div>
         <div id="profile-picture">
-            <img class="is-rounded" src="images/default-pfp.png" alt="">
+            <img class="is-rounded" src="{{user.profile.image_url}}" alt="">
         </div>
-        <div id="user-bio">
-
+        <div class='content' id="user-bio">
+            {{#if user.bio}}
+            <p>{{user.bio}}</p>
+            {{else}}
+            <p>Edit your profile to show you bio here!</p>
+            {{/if}}
         </div>
     </div>
 </section>
@@ -16,9 +20,7 @@
         </div>
         <div>
             {{!-- pfp --}}
-            {{#if user.bio}}
-            {{user.bio}}
-            {{/if}}
+
             <button class='button' id='edit-profile-button'>Edit Profile</button>
         </div>
     </div>
